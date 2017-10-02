@@ -3,10 +3,14 @@ services:
 - docker
 script:
 - docker build -t mnbbrown/travis-wallboard .
-- >
+- |
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
     docker tag mnbbrown/travis-wallboard mnbbrown/travis-wallboard:latest
     docker push mnbbrown/travis-wallboard:$TAG
     docker push mnbbrown/travis-wallboard
   fi
+env:
+  global:
+  - secure: nyBYd3ZaI/7ExAlfybDsTrWXegt6R9rTvm1XevzBL9++YC8jgECAt5JuvLMk/u1IGEsn255ZwyaQTDHQyY5IwEAerNlmmYuGRN5eFkchOWzlK1qHlmZUR083+GhH7m6Ugvh1sOolA8pioyMaIgGTuqUjb9HdQ9NG+diKbz3r5IxnGDqUsxohvoIv1r/tQ0wAxRJeV+ga2tGa6RCCSoB4KxxLg4k6EoXC75RkEWJrGR/EjiKl85KFlE1kHwF6LMvHUc1RZ+46Q1xFEJOzkhsSYtgVysy5M2r0J13r22/6j8+4mS58Q6mJj2+qIiokZWSTOT5BHp9J6UUiNzpQJTcFuB00BOUJ3n8qSEWbZVU/afqLRNsiwHbwrUO9QWN46zMCxGSDALn80upezXDbxXNyuFzw3paSw357VHDpNi9w3qYH7YQyWeC2ooWAxitBZh1yLJ+2qGDdD/3w/KkGZI2k4apDZ9YLynJkTYuA8+JZ8uUBYxIlKgSAoRMmRHerV2aWrkkHxJZnFYzvjxDjnsecHra++JXymcI4ngddd2LQzeBdQ4hJOybllRA6RXzHxXhCGRycn3023pBVXSEWPtUAd6OpfB4ayqu6lzRzeEJ9/8gpExwpv0E1K3wzrLuWZFWgGXxo4AIjkAsXVlKHDJ7PBXRz+NGzGfX+94HvTlwwGUU=
+  - secure: dlYRqEsaNvpqCnnpej7xbTzZSk7yhr/kekZPXhYm/2VCi7eTvoZcDk/FQVXTcNvd1RvY+VC7t5P4n6vlDlwsN+buGt0lUU4IntQaDWWS3XMaObAEYQkoHaugq/PicjVXiEQpxaIl732YoqSNFCTMInAM1sQwETMGg7QsjJm5ugA6sb0x0dkhhsxDqodFT7d3VtkbliFhsGZ42jVD8nx+RLlYWMXLzzo6pUksvCnrLJmXoVBK05WX7qLsuxRvQJ+WBgJMrS2zHeFRScU1ibmz7OGcGxJTNL0SN5EsRBNn8ryzG3HtRtXVrHv4B8cnlV4Bk5bhjnxgTvyWmQsX9Rcil7kivBNjngFqVahgvn3g3kpb1LsU1ManlEwHXLy68oOtPFz6bk3cRbhv1j9uOwIFiuFSC2mMh0oyHSIGjXdLx7sPjhISGa6Wbp6YIheXDfK7ZZmhnPUn8UXT0puAo2EVA52xKOMRZNNLO4jKaIyFHpbp03mMIaQ6FheWXc72RxOZ58kiAbys3yWlFbWeztteK4pX8SmvHjXa3KrE/7h+tkTmWxhpoGed9mFQwixRLqyHx+SFRFtoDDc2oeoE1hUJdm5wfbJwmcK095jejM1UT0ygYHjqkeIGsKGYsCXvCOSAPHNpqj/kErvTJ1uC84zqxTpiHBWKDbudaMe94n1M7p0=
