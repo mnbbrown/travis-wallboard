@@ -1,0 +1,12 @@
+sudo: required
+services:
+- docker
+script:
+- docker build -t mnbbrown/travis-wallboard .
+- >
+  if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+    docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+    docker tag mnbbrown/travis-wallboard mnbbrown/travis-wallboard:latest
+    docker push mnbbrown/travis-wallboard:$TAG
+    docker push mnbbrown/travis-wallboard
+  fi
